@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rafael Volpini | Terminal Portfolio</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #050805;
+            --terminal: #090d09;
+            --green: #39ff88;
+            --green-dark: #1d9b52;
+            --green-soft: #8affb8;
+            --white: #d7ffe4;
+            --gray: #66806e;
+            --red: #ff5f56;
+            --yellow: #ffbd2e;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #020402;
+            color: var(--green);
+            font-family: "Courier New", Courier, monospace;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           TERMINAL
+        ========================= */
+
+        .terminal {
+            width: min(1200px, 94vw);
+            min-height: 92vh;
+            margin: 4vh auto;
+            background: var(--terminal);
+            border: 1px solid #17351f;
+            border-radius: 8px;
+            box-shadow:
+                0 0 40px rgba(0, 255, 100, 0.08),
+                0 0 100px rgba(0, 255, 100, 0.03);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .terminal-header {
+            height: 38px;
+            background: #111611;
+            border-bottom: 1px solid #1c2c20;
+            display: flex;
+            align-items: center;
+            padding: 0 14px;
+            position: relative;
+        }
+
+        .traffic-lights {
+            display: flex;
+            gap: 8px;
+        }
+
+        .traffic-lights span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .close {
+            background: var(--red);
+        }
+
+        .minimize {
+            background: var(--yellow);
+        }
+
+        .maximize {
+            background: #27c93f;
+        }
+
+        .terminal-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #708074;
+            font-size: 12px;
+        }
+
+        .terminal-body {
+            min-height: calc(92vh - 38px);
+            padding: 28px;
+            overflow: hidden;
+        }
+
+        /* =========================
+           CURSOR
+        ========================= */
+
+        .cursor {
+            display: inline-block;
+            width: 9px;
+            height: 17px;
+            background: var(--green);
+            margin-left: 3px;
+            vertical-align: middle;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 45% {
+                opacity: 1;
+            }
+
+            46%, 100% {
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           HOME
+        ========================= */
+
+        .home {
+            min-height: calc(92vh - 100px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .command-line {
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+
+        .prompt {
+            color: var(--green-dark);
+        }
+
+        .ascii {
+            color: var(--green);
+            font-weight: bold;
+            font-size: clamp(11px, 1.6vw, 20px);
+            line-height: 1.15;
+            white-space: pre;
+            text-shadow: 0 0 12px rgba(57, 255, 136, .15);
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .hero-subtitle {
+            margin-top: 25px;
+            font-size: clamp(15px, 2vw, 21px);
+            color: var(--white);
+        }
+
+        .hero-subtitle span {
+            color: var(--green);
+        }
+
+        .hero-description {
+            max-width: 720px;
+            color: #799481;
+            line-height: 1.7;
+            margin-top: 15px;
+        }
+
+        .home-command {
+            margin-top: 40px;
+            color: var(--gray);
+            line-height: 2;
+        }
+
+        .home-command strong {
+            color: var(--green);
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        .section {
+            display: none;
+            animation: terminalIn .25s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes terminalIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            margin-bottom: 35px;
+        }
+
+        .section-header .command {
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: var(--green);
+            margin: 0;
+        }
+
+        .section-title::before {
+            content: "> ";
+            color: var(--green-dark);
+        }
+
+        .section-intro {
+            color: #7e9685;
+            line-height: 1.7;
+            max-width: 800px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .terminal-card {
+            border: 1px solid #1b3a24;
+            background: #070b07;
+            padding: 20px;
+        }
+
+        .terminal-card h3 {
+            margin-top: 0;
+            color: var(--green-soft);
+            font-size: 16px;
+        }
+
+        .terminal-card p,
+        .terminal-card li {
+            color: #829888;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .terminal-card ul {
+            padding-left: 20px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .stat {
+            border: 1px solid #17351f;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat strong {
+            display: block;
+            color: var(--green);
+            font-size: 22px;
+        }
+
+        .stat span {
+            color: var(--gray);
+            font-size: 11px;
+        }
+
+        /* =========================
+           PROJECTS
+        ========================= */
+
+        .timeline {
+            position: relative;
+            margin-left: 12px;
+            padding-left: 30px;
+            border-left: 1px solid #215b34;
+        }
+
+        .project {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .project::before {
+            content: "";
+            position: absolute;
+            width: 9px;
+            height: 9px;
+            background: var(--green);
+            border-radius: 50%;
+            left: -35px;
+            top: 6px;
+            box-shadow: 0 0 10px var(--green);
+        }
+
+        .project-date {
+            color: var(--green-dark);
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .project h3 {
+            color: var(--green-soft);
+            margin: 5px 0 10px;
+        }
+
+        .project p {
+            color: #819787;
+            line-height: 1.6;
+            max-width: 750px;
+        }
+
+        .techs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin: 15px 0;
+        }
+
+        .tech {
+            border: 1px solid #245a35;
+            color: var(--green);
+            padding: 4px 8px;
+            font-size: 11px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-links a {
+            color: var(--green);
+            text-decoration: none;
+        }
+
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+
+        .project-preview {
+            width: 100%;
+            height: 180px;
+            margin-top: 15px;
+            border: 1px solid #183b23;
+            background:
+                linear-gradient(135deg, #071008 25%, transparent 25%) 0 0/20px 20px,
+                linear-gradient(315deg, #071008 25%, transparent 25%) 0 0/20px 20px,
+                #050805;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #31543b;
+        }
+
+        /* =========================
+           EXPERIENCES
+        ========================= */
+
+        .experience {
+            border-bottom: 1px dashed #193721;
+            padding: 25px 0;
+        }
+
+        .experience:first-child {
+            padding-top: 0;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .experience h3 {
+            margin: 0;
+            color: var(--green-soft);
+        }
+
+        .experience .period {
+            color: var(--green-dark);
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .experience .role {
+            color: var(--green);
+            margin: 7px 0;
+        }
+
+        .experience p {
+            color: #819787;
+            line-height: 1.7;
+            max-width: 800px;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact-link {
+            border: 1px solid #1a3c24;
+            padding: 15px;
+            color: var(--green);
+            text-decoration: none;
+            transition: .2s;
+        }
+
+        .contact-link:hover {
+            background: #0b160d;
+            border-color: var(--green);
+            transform: translateX(4px);
+        }
+
+        .contact-link small {
+            display: block;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .form label {
+            color: var(--green-dark);
+            font-size: 12px;
+        }
+
+        .form input,
+        .form textarea {
+            width: 100%;
+            background: #050805;
+            border: 1px solid #1a3c24;
+            color: var(--green);
+            padding: 12px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .form input:focus,
+        .form textarea:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 8px rgba(57, 255, 136, .1);
+        }
+
+        .form textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .submit {
+            background: transparent;
+            color: var(--green);
+            border: 1px solid var(--green);
+            padding: 12px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .submit:hover {
+            background: var(--green);
+            color: #020402;
+        }
+
+        /* =========================
+           COMMAND BAR
+        ========================= */
+
+        .command-area {
+            margin-top: 50px;
+            border-top: 1px solid #17351f;
+            padding-top: 20px;
+        }
+
+        .command-input-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .command-input-line span {
+            color: var(--green-dark);
+        }
+
+        #commandInput {
+            flex: 1;
+            background: transparent;
+            border: 0;
+            outline: none;
+            color: var(--green);
+            font-family: inherit;
+            font-size: 15px;
+            caret-color: var(--green);
+        }
+
+        .command-hint {
+            color: #405646;
+            font-size: 11px;
+            margin-top: 10px;
+        }
+
+        /* =========================
+           SCANLINES
+        ========================= */
+
+        .terminal::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(255,255,255,0.015) 0px,
+                rgba(255,255,255,0.015) 1px,
+                transparent 1px,
+                transparent 4px
+            );
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+            .terminal {
+                width: 100%;
+                min-height: 100vh;
+                margin: 0;
+                border-radius: 0;
+            }
+
+            .terminal-body {
+                padding: 18px;
+            }
+
+            .terminal-title {
+                display: none;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .ascii {
+                font-size: 8px;
+            }
+
+            .home {
+                min-height: calc(100vh - 100px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="terminal">
+
+    <div class="terminal-header">
+        <div class="traffic-lights">
+            <span class="close"></span>
+            <span class="minimize"></span>
+            <span class="maximize"></span>
+        </div>
+
+        <div class="terminal-title">
+            rafael@portfolio: ~
+        </div>
+    </div>
+
+    <main class="terminal-body">
+
+        <!-- =========================
+             HOME
+        ========================= -->
+
+        <section id="home" class="section active home">
+
+            <div class="command-line">
+                <span class="prompt">rafael@portfolio:~$</span> whoami
+            </div>
+
+            <div class="ascii">
+ _______                    
+|__   __|       _         
+   | | ___  ___| |_   ___ 
+   | |/ _ \/ __| __||/ _ \
+   | |  __/\__ \ |_||  __/
+   |_|\___||___/\__| \___|
+            
+</div>
+
+            <div class="hero-subtitle">
+                Técnico em eletrônica <span>•</span> Cursando Bacharel em Engenharia de Software
+            </div>
+
+            <p class="hero-description">
+                Desenvolvedor em formação, apaixonado por tecnologia,
+                eletrônica, programação e pela criação de soluções que
+                transformam ideias em projetos reais.
+            </p>
+
+            <div class="home-command">
+                <div><span class="prompt">$</span> status</div>
+                <div>● Sistema online</div>
+                <div>● Disponível para novos projetos</div>
+                <div>● Explorando novas tecnologias<span class="cursor"></span></div>
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SOBRE
+        ========================= -->
+
+        <section id="sobre" class="section">
+
+            <div class="section-header">
+                <div class="command">
+                    rafael@portfolio:~$ cat sobre.txt
+                </div>
+
+                <h2 class="section-title">Sobre Mim</h2>
+            </div>
+
+            <p class="section-intro">
+                Olá! Sou Rafael Volpini, técnico em eletrônica e estudante de
+                Engenharia de Software. Minha jornada une hardware, software
+                e curiosidade por tecnologia.
+            </p>
+
+            <div class="about-grid">
+
+                <div class="terminal-card">
+                    <h3>[ PT-BR ]</h3>
+
+                    <p>
+                        Tenho interesse em desenvolvimento de sistemas,
+                        automação, eletrônica, desenvolvimento web e criação
+                        de soluções digitais.
+                    </p>
+
+                    <p>
+                        Atualmente estou ampliando meus conhecimentos em
+                        programação e engenharia de software, buscando
+                        transformar conhecimento acadêmico em experiências
+                        práticas.
+                    </p>
+                </div>
+
+                <div class="terminal-card">
+                    <h3>[ EN-US ]</h3>
+
+                    <p>
+                        I am an electronics technician currently studying
+                        Software Engineering.
+                    </p>
+
+                    <p>
+                        I enjoy learning new technologies, building projects
+                        and exploring the connection between hardware and
+                        software.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat">
+                    <strong>∞</strong>
+                    <span>CURIOSIDADE</span>
+                </div>
+
+                <div class="stat">
+                    <strong>24/7</strong>
+                    <span>APRENDIZADO</span>
+                </div>
+
+                <div class="stat">
+                    <strong>01</strong>
+                    <span>OBJETIVO: EVOLUIR</span>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PROJETOS
+        ========================= -->
+
+        <section id="projetos" class="section">
+
+            <div class="section-header">
+                <div class="command">
+                    rafael@portfolio:~$ ls ./projetos
+                </div>
+
+                <h2 class="section-title">Projetos</h2>
+
+                <p class="section-intro">
+                    Alguns projetos fictícios para representar o wireframe.
+                    Posteriormente eles podem ser substituídos pelos seus
+                    projetos reais.
+                </p>
+            </div>
+
+
+            <div class="timeline">
+
+                <article class="project">
+
+                    <div class="project-date">
+                        2023 — PROJETO_001
+                    </div>
+
+                    <h3>Sistema de Automação Residencial</h3>
+
+                    <p>
+                        Sistema experimental para controle de iluminação,
+                        sensores e dispositivos utilizando uma interface web.
+                    </p>
+
+                    <div class="techs">
+                        <span class="tech">Arduino</span>
+                        <span class="tech">C++</span>
+                        <span class="tech">JavaScript</span>
+                        <span class="tech">HTML</span>
+                        <span class="tech">CSS</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="#" target="_blank">[ GitHub ]</a>
+                        <a href="#">[ Demo ]</a>
+                    </div>
+
+                    <div class="project-preview">
+                        [ PREVIEW / GIF DO PROJETO ]
+                    </div>
+
+                </article>
+
+
+                <article class="project">
+
+                    <div class="project-date">
+                        2024 — PROJETO_002
+                    </div>
+
+                    <h3>Dashboard de Monitoramento</h3>
+
+                    <p>
+                        Dashboard para visualização de dados em tempo real,
+                        desenvolvido como projeto acadêmico.
+                    </p>
+
+                    <div class="techs">
+                        <span class="tech">Java</span>
+                        <span class="tech">Spring Boot</span>
+                        <span class="tech">MySQL</span>
+                        <span class="tech">React</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="#" target="_blank">[ GitHub ]</a>
+                        <a href="#">[ Demo ]</a>
+                    </div>
+
+                    <div class="project-preview">
+                        [ PREVIEW / GIF DO PROJETO ]
+                    </div>
+
+                </article>
+
+
+                <article class="project">
+
+                    <div class="project-date">
+                        2025 — PROJETO_003
+                    </div>
+
+                    <h3>Aplicação Web Inteligente</h3>
+
+                    <p>
+                        Aplicação web experimental utilizando inteligência
+                        artificial para auxiliar usuários em tarefas
+                        específicas.
+                    </p>
+
+                    <div class="techs">
+                        <span class="tech">Python</span>
+                        <span class="tech">FastAPI</span>
+                        <span class="tech">AI</span>
+                        <span class="tech">JavaScript</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="#" target="_blank">[ GitHub ]</a>
+                        <a href="#">[ Demo ]</a>
+                    </div>
+
+                    <div class="project-preview">
+                        [ PREVIEW / GIF DO PROJETO ]
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             EXPERIÊNCIAS
+        ========================= -->
+
+        <section id="experiencias" class="section">
+
+            <div class="section-header">
+
+                <div class="command">
+                    rafael@portfolio:~$ cat experiencias.log
+                </div>
+
+                <h2 class="section-title">Experiências</h2>
+
+                <p class="section-intro">
+                    Uma visão geral da minha trajetória profissional,
+                    acadêmica e técnica.
+                </p>
+
+            </div>
+
+
+            <article class="experience">
+
+                <div class="experience-header">
+                    <h3>Empresa Tecnológica</h3>
+                    <span class="period">2025 — ATUAL</span>
+                </div>
+
+                <div class="role">
+                    Técnico / Desenvolvedor
+                </div>
+
+                <p>
+                    Participação em atividades relacionadas à manutenção,
+                    desenvolvimento de soluções e suporte técnico.
+                    Experiência prática com resolução de problemas e
+                    trabalho em equipe.
+                </p>
+
+            </article>
+
+
+            <article class="experience">
+
+                <div class="experience-header">
+                    <h3>Projetos Freelance</h3>
+                    <span class="period">2024 — 2025</span>
+                </div>
+
+                <div class="role">
+                    Desenvolvedor
+                </div>
+
+                <p>
+                    Desenvolvimento de pequenos sistemas, páginas web e
+                    automações para necessidades específicas.
+                </p>
+
+            </article>
+
+
+            <article class="experience">
+
+                <div class="experience-header">
+                    <h3>Projetos Acadêmicos</h3>
+                    <span class="period">2023 — ATUAL</span>
+                </div>
+
+                <div class="role">
+                    Estudante de Engenharia de Software
+                </div>
+
+                <p>
+                    Desenvolvimento de projetos acadêmicos envolvendo
+                    programação, banco de dados, engenharia de software,
+                    arquitetura de sistemas e desenvolvimento web.
+                </p>
+
+            </article>
+
+
+            <article class="experience">
+
+                <div class="experience-header">
+                    <h3>Eletrônica & Hardware</h3>
+                    <span class="period">2022 — ATUAL</span>
+                </div>
+
+                <div class="role">
+                    Técnico em Eletrônica
+                </div>
+
+                <p>
+                    Experiência com eletrônica, componentes, circuitos,
+                    diagnóstico e desenvolvimento de projetos envolvendo
+                    hardware.
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <!-- =========================
+             CONTATO
+        ========================= -->
+
+        <section id="contato" class="section">
+
+            <div class="section-header">
+
+                <div class="command">
+                    rafael@portfolio:~$ ./contato
+                </div>
+
+                <h2 class="section-title">Contato</h2>
+
+                <p class="section-intro">
+                    Tem um projeto, oportunidade ou simplesmente quer trocar
+                    uma ideia? Entre em contato.
+                </p>
+
+            </div>
+
+
+            <div class="contact-grid">
+
+                <div>
+
+                    <div class="contact-links">
+
+                        <a
+                            class="contact-link"
+                            href="mailto:rafael@email.com"
+                        >
+                            [ EMAIL ]
+                            <small>rafael@email.com</small>
+                        </a>
+
+                        <a
+                            class="contact-link"
+                            href="https://wa.me/5500000000000"
+                            target="_blank"
+                        >
+                            [ WHATSAPP ]
+                            <small>Enviar mensagem</small>
+                        </a>
+
+                        <a
+                            class="contact-link"
+                            href="#"
+                            target="_blank"
+                        >
+                            [ LINKEDIN ]
+                            <small>linkedin.com/in/rafaelvolpini</small>
+                        </a>
+
+                        <a
+                            class="contact-link"
+                            href="#"
+                            target="_blank"
+                        >
+                            [ GITHUB ]
+                            <small>github.com/rafaelvolpini</small>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="terminal-card">
+
+                    <h3>$ ./send_message.sh</h3>
+
+                    <form
+                        class="form"
+                        action="mailto:rafael@email.com"
+                        method="post"
+                        enctype="text/plain"
+                    >
+
+                        <label>
+                            NOME
+                        </label>
+
+                        <input
+                            type="text"
+                            name="nome"
+                            placeholder="Digite seu nome..."
+                            required
+                        >
+
+                        <label>
+                            EMAIL
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="seu@email.com"
+                            required
+                        >
+
+                        <label>
+                            MENSAGEM
+                        </label>
+
+                        <textarea
+                            name="mensagem"
+                            placeholder="Digite sua mensagem..."
+                            required
+                        ></textarea>
+
+                        <button class="submit" type="submit">
+                            [ ENVIAR MENSAGEM ]
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             COMMAND INPUT
+        ========================= -->
+
+        <div class="command-area">
+
+            <div class="command-input-line">
+
+                <span>rafael@portfolio:~$</span>
+
+                <input
+                    type="text"
+                    id="commandInput"
+                    autocomplete="off"
+                    spellcheck="false"
+                    placeholder="digite /ajuda"
+                >
+
+            </div>
+
+            <div class="command-hint">
+                comandos: /sobre &nbsp; /projetos &nbsp; /experiencias
+                &nbsp; /contato &nbsp; /home &nbsp; /ajuda &nbsp; clear
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    const input = document.getElementById("commandInput");
+
+    const sections = {
+        "/home": "home",
+        "/inicio": "home",
+        "/sobre": "sobre",
+        "/projetos": "projetos",
+        "/experiencias": "experiencias",
+        "/experiencia": "experiencias",
+        "/contato": "contato"
+    };
+
+
+    function showSection(sectionName) {
+
+        document
+            .querySelectorAll(".section")
+            .forEach(section => {
+                section.classList.remove("active");
+            });
+
+        const section = document.getElementById(sectionName);
+
+        if (section) {
+            section.classList.add("active");
+        }
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+
+    function executeCommand(command) {
+
+        command = command
+            .trim()
+            .toLowerCase();
+
+        if (!command) {
+            return;
+        }
+
+
+        if (sections[command]) {
+
+            showSection(sections[command]);
+
+            return;
+        }
+
+
+        if (command === "/ajuda" || command === "help") {
+
+            alert(
+                "COMANDOS DISPONÍVEIS\n\n" +
+                "/home          Tela inicial\n" +
+                "/sobre         Sobre mim\n" +
+                "/projetos      Projetos\n" +
+                "/experiencias  Experiências\n" +
+                "/contato       Contato\n" +
+                "/ajuda         Ajuda\n" +
+                "clear           Limpar terminal"
+            );
+
+            return;
+        }
+
+
+        if (command === "clear" || command === "cls") {
+
+            showSection("home");
+
+            return;
+        }
+
+
+        // Pequeno efeito para comando desconhecido
+        alert(
+            "comando não encontrado: " +
+            command +
+            "\n\nDigite /ajuda para ver os comandos disponíveis."
+        );
+    }
+
+
+    input.addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+
+            executeCommand(input.value);
+
+            input.value = "";
+
+        }
+
+    });
+
+
+    // Atalhos de teclado
+    document.addEventListener("keydown", function(event) {
+
+        // "/" foca o terminal
+        if (
+            event.key === "/" &&
+            document.activeElement !== input
+        ) {
+            event.preventDefault();
+            input.focus();
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
