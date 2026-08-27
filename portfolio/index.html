@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Volpini | Portfólio Terminal</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Ícones -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <div class="terminal">
+
+        <!-- BARRA SUPERIOR -->
+        <header class="terminal-header">
+
+            <div class="window-buttons">
+                <span class="window red"></span>
+                <span class="window yellow"></span>
+                <span class="window green"></span>
+            </div>
+
+            <div class="terminal-title">
+                Portfolio terminal
+            </div>
+
+            <div class="language">
+                <button id="ptBtn" class="language-btn active">
+                    PT
+                </button>
+
+                <span>|</span>
+
+                <button id="enBtn" class="language-btn">
+                    EN
+                </button>
+            </div>
+
+        </header>
+
+
+        <!-- TERMINAL -->
+        <main class="terminal-body">
+
+            <div id="terminalOutput">
+
+                <!-- CONTEÚDO INICIAL -->
+                <section class="home-page">
+
+                    <div class="ascii-logo">
+<pre>
+██╗   ██╗ ██████╗ ██╗     ██████╗ ██╗███╗   ██╗██╗
+██║   ██║██╔═══██╗██║     ██╔══██╗██║████╗  ██║██║
+██║   ██║██║   ██║██║     ██████╔╝██║██╔██╗ ██║██║
+╚██╗ ██╔╝██║   ██║██║     ██╔═══╝ ██║██║╚██╗██║██║
+ ╚████╔╝ ╚██████╔╝███████╗██║     ██║██║ ╚████║██║
+  ╚═══╝   ╚═════╝ ╚══════╝╚═╝     ╚═╝╚═╝  ╚═══╝╚═╝
+</pre>
+                    </div>
+
+                    <h1>Volpini</h1>
+
+                    <h2 id="homeSubtitle">
+                        Técnico em Eletrônica e cursando Bacharel em Engenharia de Software
+                    </h2>
+
+                    <div class="terminal-line">
+                        <span class="prompt">$</span>
+                        <span id="welcomeText">
+                            Bem-vindo ao meu Portfólio
+                        </span>
+                    </div>
+
+                    <hr>
+
+                    <p class="home-description">
+                        Digite <span>`ajuda`</span> para conhecer os comandos disponíveis.
+                    </p>
+
+                </section>
+
+            </div>
+
+
+            <!-- ÁREA DE COMANDO -->
+            <div class="command-area">
+
+                <span class="prompt">$</span>
+
+                <input
+                    type="text"
+                    id="commandInput"
+                    autocomplete="off"
+                    autofocus
+                    placeholder="Digite um comando..."
+                >
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>

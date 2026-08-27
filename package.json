@@ -1,0 +1,24 @@
+{
+  "name": "lab1-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio pessoal desenvolvido com uma interface inspirada em um terminal de computador.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielstarling1/lab1-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gabrielstarling1/lab1-portfolio/issues"
+  },
+  "homepage": "https://github.com/gabrielstarling1/lab1-portfolio#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
