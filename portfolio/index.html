@@ -1,117 +1,367 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Volpini | Portfólio Terminal</title>
+    <meta name="description" content="Volpini OS - Portfólio pessoal">
 
+    <title>Volpini OS</title>
+
+
+    <!-- CSS GLOBAL -->
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Ícones -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+    <!-- BOOT -->
+    <link rel="stylesheet" href="css/boot.css">
+
+    <!-- SISTEMA OPERACIONAL -->
+    <link rel="stylesheet" href="css/os.css">
+
+    <!-- ÍCONES -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
+
 
 <body>
 
-    <div class="terminal">
+
+    <!-- =====================================================
+         BOOT / BIOS
+    ====================================================== -->
+
+    <section id="bootScreen" class="boot-screen">
+
+        <div class="boot-content">
+
+            <div class="bios-header">
+                VOLPINI BIOS v1.0
+            </div>
+
+
+            <div class="bios-line">
+                ----------------------------------------
+            </div>
+
+
+            <div id="bootMessages">
+
+                <p>
+                    Initializing system...
+                </p>
+
+            </div>
+
+
+            <div class="boot-progress-container">
+
+                <div id="bootProgress" class="boot-progress"></div>
+
+            </div>
+
+
+            <div id="bootPercentage" class="boot-percentage">
+                0%
+            </div>
+
+
+            <div id="bootContinue" class="boot-continue hidden">
+
+                Press
+                <span>ENTER</span>
+                to continue_
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         VOLPINI OS
+    ====================================================== -->
+
+    <main id="osScreen" class="os-screen hidden">
+
 
         <!-- BARRA SUPERIOR -->
-        <header class="terminal-header">
 
-            <div class="window-buttons">
-                <span class="window red"></span>
-                <span class="window yellow"></span>
-                <span class="window green"></span>
+        <header class="os-topbar">
+
+            <div class="os-brand">
+
+                <i class="fa-solid fa-terminal"></i>
+
+                <span>
+                    VOLPINI OS
+                </span>
+
             </div>
 
-            <div class="terminal-title">
-                Portfolio terminal
+            <div class="os-status">
+
+                <div
+    class="language-selector"
+    aria-label="Language selector"
+>
+
+    <i class="fa-solid fa-globe language-icon"></i>
+
+    <button
+        id="ptLanguage"
+        class="language-option active"
+        data-language="pt"
+    >
+        PT-BR
+    </button>
+
+    <span class="language-divider">
+        |
+    </span>
+
+    <button
+        id="enLanguage"
+        class="language-option"
+        data-language="en"
+    >
+        EN-US
+    </button>
+
+</div>
+
+
+
+                <span class="status-dot"></span>
+
+                <span data-i18n="online">
+                    ONLINE
+                </span>
+
+
+                <span id="osClock" class="os-clock">
+                    00:00
+                </span>
+
             </div>
 
-            <div class="language">
-                <button id="ptBtn" class="language-btn active">
-                    PT
-                </button>
 
-                <span>|</span>
-
-                <button id="enBtn" class="language-btn">
-                    EN
-                </button>
-            </div>
 
         </header>
 
 
-        <!-- TERMINAL -->
-        <main class="terminal-body">
 
-            <div id="terminalOutput">
+        <!-- ÁREA PRINCIPAL -->
 
-                <!-- CONTEÚDO INICIAL -->
-                <section class="home-page">
+        <section class="os-main">
 
-                    <div class="ascii-logo">
-<pre>
-██╗   ██╗ ██████╗ ██╗     ██████╗ ██╗███╗   ██╗██╗
-██║   ██║██╔═══██╗██║     ██╔══██╗██║████╗  ██║██║
-██║   ██║██║   ██║██║     ██████╔╝██║██╔██╗ ██║██║
-╚██╗ ██╔╝██║   ██║██║     ██╔═══╝ ██║██║╚██╗██║██║
- ╚████╔╝ ╚██████╔╝███████╗██║     ██║██║ ╚████║██║
-  ╚═══╝   ╚═════╝ ╚══════╝╚═╝     ╚═╝╚═╝  ╚═══╝╚═╝
-</pre>
-                    </div>
 
-                    <h1>Volpini</h1>
+            <div class="welcome">
 
-                    <h2 id="homeSubtitle">
-                        Técnico em Eletrônica e cursando Bacharel em Engenharia de Software
-                    </h2>
+                <div class="welcome-label" data-i18n="systemMessage">
+                    MENSAGEM DO SISTEMA
+                </div>
 
-                    <div class="terminal-line">
-                        <span class="prompt">$</span>
-                        <span id="welcomeText">
-                            Bem-vindo ao meu Portfólio
-                        </span>
-                    </div>
 
-                    <hr>
+                <h1>
 
-                    <p class="home-description">
-                        Digite <span>`ajuda`</span> para conhecer os comandos disponíveis.
-                    </p>
+                    <span data-i18n="welcome">
+                        Bem-vindo ao
+                    </span>
 
-                </section>
+                    <span>
+                        Volpini OS
+                    </span>
+
+                </h1>
+
+
+                <p data-i18n="selectApplication">
+
+                    Selecione uma aplicação
+                    para continuar.
+
+                </p>
 
             </div>
 
 
-            <!-- ÁREA DE COMANDO -->
-            <div class="command-area">
 
-                <span class="prompt">$</span>
 
-                <input
-                    type="text"
-                    id="commandInput"
-                    autocomplete="off"
-                    autofocus
-                    placeholder="Digite um comando..."
-                >
+            <!-- TERMINAL -->
 
-            </div>
+<button
+    class="application-card selected"
+    data-app="terminal"
+>
 
-        </main>
+    <div class="application-icon">
+
+        <i class="fa-solid fa-terminal"></i>
 
     </div>
 
 
+    <div class="application-info">
+
+        <h2 data-i18n="terminal">
+            Terminal
+        </h2>
+
+        <p data-i18n="terminalDescription">
+            Portfólio interativo
+        </p>
+
+    </div>
+
+
+    <span class="application-key">
+        01
+    </span>
+
+</button>
+
+
+<!-- PORTFÓLIO -->
+
+<button
+    class="application-card"
+    data-app="portfolio"
+>
+
+    <div class="application-icon">
+
+        <i class="fa-solid fa-file-lines"></i>
+
+    </div>
+
+
+    <div class="application-info">
+
+        <h2 data-i18n="portfolio">
+            Portfólio
+        </h2>
+
+        <p data-i18n="portfolioDescription">
+            Currículo / Documento
+        </p>
+
+    </div>
+
+
+    <span class="application-key">
+        02
+    </span>
+
+</button>
+
+
+
+            <!-- RODAPÉ -->
+
+            <footer class="os-footer">
+
+                <div>
+
+                    <span class="key">
+                        ↑ ↓
+                    </span>
+
+                    <span data-i18n="select">
+                        Selecionar
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <span class="key">
+                        ENTER
+                    </span>
+
+                    <span data-i18n="open">
+                        Abrir
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <span class="key">
+                        ESC
+                    </span>
+
+                    <span data-i18n="system">
+                        Sistema
+                    </span>
+
+                </div>
+
+            </footer>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JANELA DAS APLICAÇÕES
+    ====================================================== -->
+
+    <div id="applicationWindow" class="application-window hidden">
+
+        <div class="window-header">
+
+            <div class="window-controls">
+
+                <button id="closeApplication" class="window-close" aria-label="Fechar">
+                    ×
+                </button>
+
+            </div>
+
+
+            <div id="windowTitle" class="window-title">
+                Application
+            </div>
+
+
+            <div class="window-spacer"></div>
+
+        </div>
+
+
+        <div id="applicationContent" class="application-content"></div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SCRIPTS
+    ====================================================== -->
+
     <script src="js/data.js"></script>
+
     <script src="js/app.js"></script>
 
+    <script src="js/boot.js"></script>
+
+    <script src="js/os.js"></script>
+
+    <script src="js/i18n.js"></script>
+
+
 </body>
+
 </html>

@@ -1,0 +1,693 @@
+/* =========================================================
+   VOLPINI OS
+========================================================= */
+
+.os-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #202832 0%,
+            #151a21 55%,
+            #0d1116 100%
+        );
+
+    color: #e6edf3;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    overflow: auto;
+
+    animation: osAppear .5s ease;
+
+}
+
+
+@keyframes osAppear {
+
+    from {
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.os-topbar {
+
+    height: 58px;
+
+    border-bottom: 1px solid #303a48;
+
+    background: rgba(12, 16, 21, .8);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 0 30px;
+
+}
+
+
+.os-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: #00f5a0;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+}
+
+
+.os-brand i {
+
+    font-size: 18px;
+
+}
+
+
+.os-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #768395;
+
+    font-size: 13px;
+
+}
+
+
+.status-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    background: #00f5a0;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 8px #00f5a0;
+
+}
+
+
+.os-clock {
+
+    margin-left: 15px;
+
+    color: #c3cedc;
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.os-main {
+
+    width: min(1000px, 90%);
+
+    min-height: calc(100vh - 58px);
+
+    margin: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+}
+
+
+/* =========================================================
+   WELCOME
+========================================================= */
+
+.welcome {
+
+    margin-bottom: 40px;
+
+}
+
+
+.welcome-label {
+
+    color: #667386;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.welcome h1 {
+
+    color: #dce5ef;
+
+    font-size: clamp(28px, 5vw, 48px);
+
+    margin-bottom: 12px;
+
+}
+
+
+.welcome h1 span {
+
+    color: #00f5a0;
+
+}
+
+
+.welcome p {
+
+    color: #8491a3;
+
+    font-size: 16px;
+
+}
+
+
+/* =========================================================
+   APPLICATIONS
+========================================================= */
+
+.applications {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.application-card {
+
+    position: relative;
+
+    min-height: 210px;
+
+    padding: 28px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    background: rgba(24, 30, 38, .9);
+
+    border: 1px solid #34404f;
+
+    color: #e6edf3;
+
+    font-family: inherit;
+
+    transition:
+        transform .2s ease,
+        border-color .2s ease,
+        background .2s ease;
+
+}
+
+
+.application-card:hover,
+.application-card.selected {
+
+    border-color: #00f5a0;
+
+    background:
+        rgba(0, 245, 160, .05);
+
+    transform: translateY(-5px);
+
+}
+
+
+.application-card.selected {
+
+    box-shadow:
+        0 0 25px rgba(0, 245, 160, .06);
+
+}
+
+
+.application-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #425063;
+
+    color: #00f5a0;
+
+    font-size: 22px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.application-card.selected
+.application-icon {
+
+    border-color: #00f5a0;
+
+    background:
+        rgba(0, 245, 160, .08);
+
+}
+
+
+.application-info h2 {
+
+    font-size: 21px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.application-info p {
+
+    color: #778598;
+
+    font-size: 14px;
+
+}
+
+
+.application-key {
+
+    position: absolute;
+
+    top: 18px;
+
+    right: 18px;
+
+    color: #4f5c6e;
+
+    font-size: 12px;
+
+}
+
+
+.application-card.selected
+.application-key {
+
+    color: #00f5a0;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.os-footer {
+
+    margin-top: 40px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #29323e;
+
+    display: flex;
+
+    gap: 30px;
+
+    color: #677487;
+
+    font-size: 13px;
+
+}
+
+
+.key {
+
+    color: #b7c2cf;
+
+    border: 1px solid #465262;
+
+    padding: 4px 7px;
+
+    margin-right: 5px;
+
+}
+
+
+/* =========================================================
+   APPLICATION WINDOW
+========================================================= */
+
+.application-window {
+
+    position: fixed;
+
+    z-index: 500;
+
+    inset: 5% 5%;
+
+    background: #171c23;
+
+    border: 1px solid #00f5a0;
+
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, .6);
+
+    display: flex;
+
+    flex-direction: column;
+
+    animation: windowOpen .25s ease;
+
+}
+
+
+@keyframes windowOpen {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(.97);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+
+.window-header {
+
+    height: 45px;
+
+    background: #202630;
+
+    border-bottom: 1px solid #34404d;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: center;
+
+}
+
+
+.window-controls {
+
+    padding-left: 15px;
+
+}
+
+
+.window-close {
+
+    width: 18px;
+
+    height: 18px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #ff5f57;
+
+    color: #47120e;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    line-height: 12px;
+
+}
+
+
+.window-title {
+
+    color: #9eabbc;
+
+    font-size: 13px;
+
+}
+
+
+.window-spacer {
+
+    height: 1px;
+
+}
+
+
+.application-content {
+
+    flex: 1;
+
+    overflow: auto;
+
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .applications {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .application-card {
+
+        min-height: 130px;
+
+        padding: 20px;
+
+    }
+
+
+    .application-icon {
+
+        width: 45px;
+
+        height: 45px;
+
+        margin-bottom: 15px;
+
+    }
+
+
+    .os-main {
+
+        justify-content: flex-start;
+
+        padding-top: 50px;
+
+        padding-bottom: 40px;
+
+    }
+
+
+    .os-footer {
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .application-window {
+
+        inset: 2%;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .os-topbar {
+
+        padding: 0 15px;
+
+    }
+
+
+    .os-status {
+
+        font-size: 10px;
+
+    }
+
+
+    .os-clock {
+
+        display: none;
+
+    }
+
+
+    .welcome h1 {
+
+        font-size: 30px;
+
+    }
+
+    /* =========================================================
+   LANGUAGE SELECTOR
+========================================================= */
+
+.language-selector {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 5px 8px;
+
+    border: 1px solid #34404f;
+
+    background: rgba(20, 25, 32, .9);
+
+    transition:
+        border-color .2s ease,
+        background .2s ease;
+
+}
+
+
+.language-selector:hover {
+
+    border-color: #526071;
+
+}
+
+
+.language-icon {
+
+    color: #718096;
+
+    font-size: 12px;
+
+    margin-right: 2px;
+
+}
+
+
+.language-option {
+
+    border: none;
+
+    background: transparent;
+
+    color: #647184;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: .5px;
+
+    padding: 5px 6px;
+
+    cursor: pointer;
+
+    transition:
+        color .2s ease,
+        background .2s ease;
+
+}
+
+
+.language-option:hover {
+
+    color: #dce5ef;
+
+}
+
+
+.language-option.active {
+
+    color: #00f5a0;
+
+    background:
+        rgba(0, 245, 160, .08);
+
+}
+
+
+.language-divider {
+
+    color: #3f4b5a;
+
+    font-size: 12px;
+
+    user-select: none;
+
+}
+
+
+}

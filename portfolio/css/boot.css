@@ -1,0 +1,196 @@
+/* =========================================================
+   VOLPINI OS - BOOT
+========================================================= */
+
+.boot-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    background: #080b0f;
+
+    color: #d9e2ed;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family:
+        "Courier New",
+        Courier,
+        monospace;
+
+    transition:
+        opacity .5s ease,
+        visibility .5s ease;
+
+}
+
+
+.boot-screen.hidden {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+}
+
+
+.boot-content {
+
+    width: min(800px, 90%);
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+}
+
+
+.bios-header {
+
+    color: #00f5a0;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+}
+
+
+.bios-line {
+
+    color: #586575;
+
+    margin-bottom: 20px;
+
+}
+
+
+#bootMessages {
+
+    min-height: 190px;
+
+}
+
+
+#bootMessages p {
+
+    margin: 4px 0;
+
+}
+
+
+.boot-ok {
+
+    color: #00f5a0;
+
+}
+
+
+.boot-warning {
+
+    color: #ffb52e;
+
+}
+
+
+.boot-progress-container {
+
+    width: 100%;
+
+    height: 12px;
+
+    border: 1px solid #354051;
+
+    margin-top: 20px;
+
+    background: #11161c;
+
+}
+
+
+.boot-progress {
+
+    width: 0%;
+
+    height: 100%;
+
+    background: #00f5a0;
+
+    box-shadow:
+        0 0 10px rgba(0, 245, 160, .5);
+
+    transition: width .15s linear;
+
+}
+
+
+.boot-percentage {
+
+    color: #00f5a0;
+
+    margin-top: 8px;
+
+    text-align: right;
+
+}
+
+
+.boot-continue {
+
+    color: #9ba8b8;
+
+    margin-top: 30px;
+
+    animation: blink 1s infinite;
+
+}
+
+
+.boot-continue span {
+
+    color: #00f5a0;
+
+}
+
+
+.hidden {
+
+    display: none !important;
+
+}
+
+
+@keyframes blink {
+
+    50% {
+
+        opacity: .3;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .boot-content {
+
+        font-size: 13px;
+
+    }
+
+
+    .bios-header {
+
+        font-size: 19px;
+
+    }
+
+}

@@ -6,6 +6,11 @@ const terminalOutput = document.getElementById("terminalOutput");
 const ptBtn = document.getElementById("ptBtn");
 const enBtn = document.getElementById("enBtn");
 
+const systemLanguage =
+    localStorage.getItem(
+        "volpini-language"
+    ) || "pt";
+
 
 /* =========================
    COMANDOS
@@ -803,4 +808,10 @@ document.addEventListener(
         }
 
     }
+
+
 );
+
+window.addEventListener("load", () => {
+    commandInput.focus();
+});
