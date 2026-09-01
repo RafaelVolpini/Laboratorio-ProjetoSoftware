@@ -13,8 +13,8 @@ const translations = {
         terminal: "Terminal",
         terminalDescription: "Portfólio interativo",
 
-        portfolio: "Portfólio",
-        portfolioDescription: "Currículo / Documento",
+        resume: "Currículo PDF",
+        resumeDescription: "Documento profissional legível",
 
         systemInfo: "Informações do sistema",
         systemInfoDescription: "Informações do sistema",
@@ -51,8 +51,8 @@ const translations = {
         terminal: "Terminal",
         terminalDescription: "Interactive portfolio",
 
-        portfolio: "Portfolio",
-        portfolioDescription: "Resume / Document",
+        resume: "Resume PDF",
+        resumeDescription: "Readable professional document",
 
         systemInfo: "System Information",
         systemInfoDescription: "System information",

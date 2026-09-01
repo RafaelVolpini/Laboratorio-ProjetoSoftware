@@ -18,6 +18,12 @@
 
 <body>
 
+    <script>
+        if (new URLSearchParams(window.location.search).has("embedded")) {
+            document.body.classList.add("embedded-terminal");
+        }
+    </script>
+
     <div class="terminal">
 
         <header class="terminal-header">
@@ -42,7 +48,7 @@
 
         <main class="terminal-body">
 
-            <div id="terminalOutput">
+            <div id="terminalOutput" aria-live="polite">
 
                 <section class="home-page">
 
@@ -109,7 +115,8 @@
                 </span>
 
 
-                <input type="text" id="commandInput" autocomplete="off" autofocus placeholder="Digite um comando...">
+                <label class="sr-only" for="commandInput">Digite um comando</label>
+                <input type="text" id="commandInput" autocomplete="off" autofocus placeholder="Digite um comando..." aria-label="Digite um comando">
 
             </div>
 

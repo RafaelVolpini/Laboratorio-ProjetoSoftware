@@ -1,8 +1,32 @@
-# Terminal Portfolio — TESTE
+# Terminal Portfolio — Volpini OS
 
 Portfolio pessoal desenvolvido com uma interface inspirada em um terminal de computador.
 
-A proposta é apresentar informações profissionais de forma interativa, permitindo que o visitante navegue pelo conteúdo utilizando comandos digitados diretamente no terminal.
+A proposta é apresentar informações profissionais de forma interativa, permitindo que o visitante navegue pelo conteúdo utilizando comandos digitados diretamente no terminal. O conteúdo é individual e pode ser personalizado em `portfolio/js/data.js`.
+
+## Site publicado
+
+Ainda não há uma URL de produção configurada. Após publicar a pasta `portfolio/` em um serviço estático, substitua este texto pelo endereço final, por exemplo: `https://seu-projeto.vercel.app`.
+
+## Tecnologias utilizadas
+
+- HTML5 semântico e acessível.
+- CSS3, com layout responsivo, foco visível e suporte a `prefers-reduced-motion`.
+- JavaScript puro para o terminal, navegação, idiomas e formulário de contato.
+- Font Awesome 6 para os ícones.
+
+## Uso e desenvolvimento
+
+1. Entre na pasta `portfolio/`.
+2. Instale as dependências com `npm install`.
+3. Inicie o servidor local com `npm run dev`.
+4. Abra o endereço exibido pelo `live-server`.
+
+O formulário valida nome, e-mail e mensagem e abre o aplicativo de e-mail padrão usando `mailto:volpini767@gmail.com`. Para receber envios diretamente no servidor, substitua esse fluxo por um serviço como Formspree ou por uma API própria.
+
+O currículo usado pelo sistema é `portfolio/CV Rafael Nagem Volpini-5.pdf`. No OS, selecione **Currículo PDF** e pressione `Enter`. O visualizador PDF.js permite navegar pelas páginas, ajustar o zoom, baixar o arquivo e abrir outro PDF local pelo botão **Abrir PDF**.
+
+Para publicar, conecte o repositório ao Vercel, Render ou GitHub Pages e defina `portfolio/` como diretório raiz de publicação. Depois atualize a seção **Site publicado** com a URL real.
 
 ## Preview
 
@@ -118,6 +142,7 @@ portfolio/
 │
 ├── index.html
 ├── README.md
+├── CV Rafael Nagem Volpini-5.pdf
 │
 ├── assets/
 │   ├── images/

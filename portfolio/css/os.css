@@ -102,7 +102,7 @@
 
     gap: 8px;
 
-    color: #768395;
+    color: #b5c1d0;
 
     font-size: 13px;
 
@@ -168,7 +168,7 @@
 
 .welcome-label {
 
-    color: #667386;
+    color: #aab8c9;
 
     font-size: 12px;
 
@@ -199,7 +199,7 @@
 
 .welcome p {
 
-    color: #8491a3;
+    color: #b5c1d0;
 
     font-size: 16px;
 
@@ -215,9 +215,12 @@
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(2, minmax(0, 1fr));
 
     gap: 20px;
+
+    width: 100%;
+
 
 }
 
@@ -246,6 +249,17 @@
         transform .2s ease,
         border-color .2s ease,
         background .2s ease;
+
+}
+
+
+.application-card:focus-visible,
+.window-close:focus-visible,
+.language-option:focus-visible {
+
+    outline: 3px solid #ffcf5a;
+
+    outline-offset: 3px;
 
 }
 
@@ -316,7 +330,7 @@
 
 .application-info p {
 
-    color: #778598;
+    color: #b6c3d2;
 
     font-size: 14px;
 
@@ -331,7 +345,7 @@
 
     right: 18px;
 
-    color: #4f5c6e;
+    color: #aab7c8;
 
     font-size: 12px;
 
@@ -362,7 +376,7 @@
 
     gap: 30px;
 
-    color: #677487;
+    color: #aebccd;
 
     font-size: 13px;
 
@@ -503,6 +517,131 @@
 }
 
 
+.pdf-viewer {
+
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #0d1116;
+
+}
+
+
+.pdf-toolbar {
+
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #202630;
+    border-bottom: 1px solid #3e4b5b;
+
+}
+
+
+.pdf-toolbar button,
+.pdf-file-label,
+.pdf-download {
+
+    min-width: 36px;
+    min-height: 34px;
+    padding: 7px 10px;
+    border: 1px solid #59687a;
+    background: #151b22;
+    color: #f0f4f8;
+    font: inherit;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+
+}
+
+
+.pdf-file-label {
+
+    color: #00f5a0;
+
+}
+
+
+.pdf-toolbar button:hover,
+.pdf-toolbar button:focus-visible,
+.pdf-file-label:hover,
+.pdf-file-label:focus-within,
+.pdf-download:hover,
+.pdf-download:focus-visible {
+
+    border-color: #00f5a0;
+    color: #ffffff;
+    outline: 3px solid #ffcf5a;
+    outline-offset: 2px;
+
+}
+
+
+.pdf-toolbar button:disabled {
+
+    cursor: not-allowed;
+    opacity: .45;
+
+}
+
+
+#pdfPageStatus,
+#pdfZoomStatus {
+
+    min-width: 76px;
+    color: #f0f4f8;
+    font-size: 13px;
+    text-align: center;
+
+}
+
+
+.pdf-status {
+
+    padding: 14px 18px;
+    color: #dbe5ef;
+    font-size: 14px;
+    text-align: center;
+
+}
+
+
+.pdf-canvas-container {
+
+    flex: 1;
+    overflow: auto;
+    padding: 16px;
+    text-align: center;
+
+}
+
+
+.pdf-page {
+
+    display: inline-block;
+    max-width: none;
+    background: #ffffff;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, .45);
+
+    margin: 0 auto 24px;
+
+}
+
+
+.pdf-page:last-child {
+
+    margin-bottom: 0;
+
+}
+
+
 /* =========================================================
    RESPONSIVIDADE
 ========================================================= */
@@ -563,6 +702,85 @@
 }
 
 
+/* =========================================================
+   LANGUAGE SELECTOR
+========================================================= */
+
+.language-selector {
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 7px;
+    border: 1px solid #465568;
+    background: #151b22;
+    transition: border-color .2s ease, background .2s ease;
+
+}
+
+
+.language-selector:hover,
+.language-selector:focus-within {
+
+    border-color: #00f5a0;
+    background: #1c252e;
+
+}
+
+
+.language-icon {
+
+    color: #d4dfeb;
+    font-size: 12px;
+    margin-right: 2px;
+
+}
+
+
+.language-option {
+
+    border: 1px solid transparent;
+    background: transparent;
+    color: #c3cfdd;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    padding: 6px 8px;
+    cursor: pointer;
+    transition: color .2s ease, background .2s ease, border-color .2s ease;
+
+}
+
+
+.language-option:hover,
+.language-option:focus-visible {
+
+    color: #ffffff;
+    border-color: #718196;
+    outline: none;
+
+}
+
+
+.language-option.active {
+
+    color: #08130f;
+    background: #00f5a0;
+    border-color: #00f5a0;
+
+}
+
+
+.language-divider {
+
+    color: #7f90a4;
+    font-size: 12px;
+    user-select: none;
+
+}
+
+
 @media (max-width: 500px) {
 
     .os-topbar {
@@ -591,103 +809,5 @@
         font-size: 30px;
 
     }
-
-    /* =========================================================
-   LANGUAGE SELECTOR
-========================================================= */
-
-.language-selector {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 7px;
-
-    padding: 5px 8px;
-
-    border: 1px solid #34404f;
-
-    background: rgba(20, 25, 32, .9);
-
-    transition:
-        border-color .2s ease,
-        background .2s ease;
-
-}
-
-
-.language-selector:hover {
-
-    border-color: #526071;
-
-}
-
-
-.language-icon {
-
-    color: #718096;
-
-    font-size: 12px;
-
-    margin-right: 2px;
-
-}
-
-
-.language-option {
-
-    border: none;
-
-    background: transparent;
-
-    color: #647184;
-
-    font-family: inherit;
-
-    font-size: 11px;
-
-    font-weight: bold;
-
-    letter-spacing: .5px;
-
-    padding: 5px 6px;
-
-    cursor: pointer;
-
-    transition:
-        color .2s ease,
-        background .2s ease;
-
-}
-
-
-.language-option:hover {
-
-    color: #dce5ef;
-
-}
-
-
-.language-option.active {
-
-    color: #00f5a0;
-
-    background:
-        rgba(0, 245, 160, .08);
-
-}
-
-
-.language-divider {
-
-    color: #3f4b5a;
-
-    font-size: 12px;
-
-    user-select: none;
-
-}
-
 
 }

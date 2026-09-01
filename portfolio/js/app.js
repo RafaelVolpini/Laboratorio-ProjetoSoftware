@@ -1,4 +1,5 @@
-let currentLanguage = "pt";
+let currentLanguage =
+    localStorage.getItem("volpini-language") || "pt";
 
 const commandInput = document.getElementById("commandInput");
 const terminalOutput = document.getElementById("terminalOutput");
@@ -10,6 +11,54 @@ const systemLanguage =
     localStorage.getItem(
         "volpini-language"
     ) || "pt";
+
+
+function applyTerminalLanguage() {
+
+    const data = portfolioData[currentLanguage];
+    const home = data.home;
+    const welcomeText = document.getElementById("welcomeText");
+    const homeSubtitle = document.getElementById("homeSubtitle");
+    const commandPlaceholder = document.getElementById("commandInput");
+    const homeDescription = document.querySelector(".home-description");
+
+    if (welcomeText) {
+        welcomeText.textContent = home.welcome;
+    }
+
+    if (homeSubtitle) {
+        homeSubtitle.textContent = home.subtitle;
+    }
+
+    if (commandPlaceholder) {
+        commandPlaceholder.placeholder =
+            currentLanguage === "pt"
+                ? "Digite um comando..."
+                : "Type a command...";
+    }
+
+    if (homeDescription) {
+        homeDescription.innerHTML =
+            currentLanguage === "pt"
+                ? "Digite <span>`ajuda`</span> para conhecer os comandos disponíveis."
+                : "Type <span>`help`</span> to see the available commands.";
+    }
+
+}
+
+applyTerminalLanguage();
+
+
+window.addEventListener("storage", (event) => {
+
+    if (event.key !== "volpini-language") {
+        return;
+    }
+
+    currentLanguage = event.newValue || "pt";
+    applyTerminalLanguage();
+
+});
 
 
 /* =========================
@@ -418,6 +467,7 @@ function showContact() {
                     href="${data.github}"
                     class="contact-item"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     <i class="fa-brands fa-github"></i>
 
@@ -431,6 +481,7 @@ function showContact() {
                     href="${data.linkedin}"
                     class="contact-item"
                     target="_blank"
+                    rel="noopener noreferrer"
                 >
                     <i class="fa-brands fa-linkedin"></i>
 
@@ -442,7 +493,7 @@ function showContact() {
             </div>
 
 
-            <form id="contactForm" class="contact-form">
+            <form id="contactForm" class="contact-form" novalidate>
 
                 <div class="form-group">
 
@@ -455,6 +506,7 @@ function showContact() {
                         id="name"
                         name="name"
                         placeholder="Seu nome"
+                        autocomplete="name"
                         required
                     >
 
@@ -472,6 +524,7 @@ function showContact() {
                         id="email"
                         name="email"
                         placeholder="seu@email.com"
+                        autocomplete="email"
                         required
                     >
 
@@ -489,6 +542,7 @@ function showContact() {
                         name="message"
                         rows="5"
                         placeholder="Digite sua mensagem..."
+                        aria-describedby="formMessage"
                         required
                     ></textarea>
 
@@ -503,7 +557,7 @@ function showContact() {
 
                 </button>
 
-                <div id="formMessage"></div>
+                <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
 
             </form>
 
@@ -755,9 +809,11 @@ function scrollToBottom() {
    INPUT
 ========================= */
 
-commandInput.addEventListener(
-    "keydown",
-    function(event) {
+if (commandInput) {
+
+    commandInput.addEventListener(
+        "keydown",
+        function(event) {
 
         if (event.key === "Enter") {
 
@@ -769,23 +825,29 @@ commandInput.addEventListener(
 
         }
 
-    }
-);
+        }
+    );
+
+}
 
 
 /* =========================
    IDIOMA
 ========================= */
 
-ptBtn.addEventListener(
-    "click",
-    () => changeLanguage("pt")
-);
+if (ptBtn && enBtn) {
 
-enBtn.addEventListener(
-    "click",
-    () => changeLanguage("en")
-);
+    ptBtn.addEventListener(
+        "click",
+        () => changeLanguage("pt")
+    );
+
+    enBtn.addEventListener(
+        "click",
+        () => changeLanguage("en")
+    );
+
+}
 
 
 /* =========================
@@ -803,7 +865,9 @@ document.addEventListener(
             !event.target.closest("textarea")
         ) {
 
-            commandInput.focus();
+            if (commandInput) {
+                commandInput.focus();
+            }
 
         }
 
@@ -813,5 +877,9 @@ document.addEventListener(
 );
 
 window.addEventListener("load", () => {
-    commandInput.focus();
+
+    if (commandInput) {
+        commandInput.focus();
+    }
+
 });

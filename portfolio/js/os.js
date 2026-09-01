@@ -54,8 +54,8 @@ const applications = [
     },
 
     {
-        id: "portfolio",
-        title: "Volpini Portfolio"
+        id: "resume",
+        title: "Currículo PDF"
     }
 
 ];
@@ -73,6 +73,11 @@ function updateSelection() {
 
             card.classList.toggle(
                 "selected",
+                index === selectedApplication
+            );
+
+            card.setAttribute(
+                "aria-pressed",
                 index === selectedApplication
             );
 
@@ -115,9 +120,9 @@ function openApplication(
             break;
 
 
-        case "portfolio":
+        case "resume":
 
-            loadPortfolio();
+            loadResume();
 
             break;
 
@@ -141,7 +146,7 @@ function loadTerminal() {
     applicationContent.innerHTML = `
 
         <iframe
-            src="terminal.html"
+            src="terminal.html?embedded=1"
             style="
                 width: 100%;
                 height: 100%;
@@ -159,118 +164,179 @@ function loadTerminal() {
 
 
 /* =========================================================
-   PORTFÓLIO
+   CURRICULO PDF
 ========================================================= */
 
-function loadPortfolio() {
+function loadResume() {
+
+    const resumePdfPath = "CV%20Rafael%20Nagem%20Volpini-5.pdf";
 
     applicationContent.innerHTML = `
 
-        <div
-            style="
-                padding: 40px;
-                color: #e6edf3;
-                font-family: 'Courier New', monospace;
-            "
-        >
-
-            <h1
-                style="
-                    color: #00f5a0;
-                    margin-bottom: 15px;
-                "
-            >
-                Volpini
-            </h1>
-
-
-            <h2
-                style="
-                    color: #ffb52e;
-                    margin-bottom: 30px;
-                "
-            >
-                Técnico em Eletrônica
-                &
-                Bacharelado em Engenharia de Software
-            </h2>
-
-
-            <hr
-                style="
-                    border: 0;
-                    border-top: 1px solid #394353;
-                    margin-bottom: 30px;
-                "
-            >
-
-
-            <h2>Sobre Mim</h2>
-
-            <p
-                style="
-                    color: #aeb9c9;
-                    line-height: 1.8;
-                    margin: 15px 0 30px;
-                "
-            >
-                Técnico em Eletrônica e atualmente
-                cursando Bacharelado em Engenharia
-                de Software.
-            </p>
-
-
-            <h2>Experiência</h2>
-
-            <p
-                style="
-                    color: #aeb9c9;
-                    line-height: 1.8;
-                    margin: 15px 0;
-                "
-            >
-                <strong style="color:#00f5a0;">
-                    TSA
-                </strong>
-                —
-                Estágio em Desenvolvimento Front-End
-                durante 1 ano e 5 meses.
-            </p>
-
-
-            <p
-                style="
-                    color: #aeb9c9;
-                    line-height: 1.8;
-                    margin: 15px 0 30px;
-                "
-            >
-                <strong style="color:#00f5a0;">
-                    Matter&Co
-                </strong>
-                —
-                Desenvolvimento de Software,
-                atualmente.
-            </p>
-
-
-            <h2>Projeto</h2>
-
-            <p
-                style="
-                    color: #aeb9c9;
-                    line-height: 1.8;
-                    margin-top: 15px;
-                "
-            >
-                Display de 7 segmentos movido por
-                servo motores — relógio utilizando
-                24 servos.
-            </p>
-
+        <div class="pdf-viewer" aria-label="Visualizador de currículo PDF">
+            <div class="pdf-toolbar">
+                <label class="pdf-file-label" for="pdfFileInput">
+                    <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                    Abrir PDF
+                </label>
+                <input id="pdfFileInput" class="sr-only" type="file" accept="application/pdf">
+                <button id="pdfZoomOut" type="button" aria-label="Diminuir zoom">
+                    <i class="fa-solid fa-minus" aria-hidden="true"></i>
+                </button>
+                <span id="pdfZoomStatus">100%</span>
+                <button id="pdfZoomIn" type="button" aria-label="Aumentar zoom">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                </button>
+                <a id="pdfDownload" class="pdf-download" href="${resumePdfPath}" download aria-label="Baixar currículo PDF">
+                    <i class="fa-solid fa-download" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div id="pdfStatus" class="pdf-status" role="status" aria-live="polite">
+                Carregando currículo...
+            </div>
+            <div id="pdfCanvasContainer" class="pdf-canvas-container" aria-label="Páginas do currículo">
+            </div>
         </div>
 
     `;
+
+    setupPdfViewer();
+
+}
+
+
+function setupPdfViewer() {
+
+    const pdfFileInput = document.getElementById("pdfFileInput");
+    const pdfCanvasContainer = document.getElementById("pdfCanvasContainer");
+    const pdfStatus = document.getElementById("pdfStatus");
+    const pdfZoomStatus = document.getElementById("pdfZoomStatus");
+    const pdfZoomOut = document.getElementById("pdfZoomOut");
+    const pdfZoomIn = document.getElementById("pdfZoomIn");
+    const pdfDownload = document.getElementById("pdfDownload");
+
+    if (!window.pdfjsLib) {
+        pdfStatus.textContent = "Não foi possível carregar o visualizador PDF.";
+        return;
+    }
+
+    window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+    let pdfDocument = null;
+    let currentPage = 1;
+    let zoom = 1;
+    let selectedPdfUrl = "CV%20Rafael%20Nagem%20Volpini-5.pdf";
+
+    function updateControls() {
+
+        const totalPages = pdfDocument ? pdfDocument.numPages : 0;
+
+        pdfZoomStatus.textContent = `${Math.round(zoom * 100)}%`;
+        pdfZoomOut.disabled = zoom <= 0.6;
+        pdfZoomIn.disabled = zoom >= 2.4;
+
+    }
+
+    async function renderPages() {
+
+        if (!pdfDocument) {
+            return;
+        }
+
+        pdfCanvasContainer.replaceChildren();
+        const deviceScale = window.devicePixelRatio || 1;
+
+        for (let pageNumber = 1; pageNumber <= pdfDocument.numPages; pageNumber++) {
+
+            const page = await pdfDocument.getPage(pageNumber);
+            const baseViewport = page.getViewport({ scale: 1 });
+            const availableWidth = Math.max(pdfCanvasContainer.clientWidth - 32, 280);
+            const fitScale = availableWidth / baseViewport.width;
+            const viewport = page.getViewport({ scale: fitScale * zoom });
+            const canvas = document.createElement("canvas");
+            const context = canvas.getContext("2d");
+
+            canvas.className = "pdf-page";
+            canvas.setAttribute("aria-label", `Página ${pageNumber} do currículo`);
+            canvas.width = Math.floor(viewport.width * deviceScale);
+            canvas.height = Math.floor(viewport.height * deviceScale);
+            canvas.style.width = `${viewport.width}px`;
+            canvas.style.height = `${viewport.height}px`;
+            context.setTransform(deviceScale, 0, 0, deviceScale, 0, 0);
+            pdfCanvasContainer.appendChild(canvas);
+
+            await page.render({
+                canvasContext: context,
+                viewport
+            }).promise;
+
+        }
+
+        updateControls();
+
+    }
+
+    async function openPdf(source) {
+
+        try {
+
+            pdfStatus.textContent = "Renderizando currículo...";
+            pdfDocument = await window.pdfjsLib.getDocument(source).promise;
+            currentPage = 1;
+            zoom = 1;
+            pdfStatus.textContent = "Currículo carregado.";
+            pdfDownload.href = typeof source === "string" ? source : selectedPdfUrl;
+            await renderPages();
+
+        } catch (error) {
+
+            pdfDocument = null;
+            updateControls();
+            pdfStatus.textContent =
+                "Currículo não encontrado. Verifique o arquivo PDF ou abra um PDF local.";
+
+        }
+
+    }
+
+    pdfZoomOut.addEventListener("click", () => {
+
+        zoom = Math.max(0.6, zoom - 0.2);
+        renderPages();
+
+    });
+
+    pdfZoomIn.addEventListener("click", () => {
+
+        zoom = Math.min(2.4, zoom + 0.2);
+        renderPages();
+
+    });
+
+    pdfFileInput.addEventListener("change", (event) => {
+
+        const file = event.target.files[0];
+
+        if (!file) {
+            return;
+        }
+
+        selectedPdfUrl = URL.createObjectURL(file);
+        openPdf(selectedPdfUrl);
+
+    });
+
+    window.addEventListener("resize", () => {
+
+        if (pdfDocument) {
+            renderPages();
+        }
+
+    });
+
+    updateControls();
+    openPdf(selectedPdfUrl);
 
 }
 
@@ -331,6 +397,18 @@ document.addEventListener(
     "keydown",
     (event) => {
 
+        if (osScreen.classList.contains("hidden")) {
+            return;
+        }
+
+        const navigationKey =
+            ["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].includes(event.key) ||
+            ["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].includes(event.code);
+
+        if (navigationKey) {
+            event.preventDefault();
+        }
+
         /*
          * Se uma aplicação estiver aberta,
          * ESC fecha a aplicação.
@@ -353,7 +431,9 @@ document.addEventListener(
         }
 
 
-        switch (event.key) {
+        const pressedKey = event.key || event.code;
+
+        switch (pressedKey) {
 
             case "ArrowRight":
 
@@ -417,24 +497,19 @@ document.addEventListener(
 
 function updateClock() {
 
-    const now =
-        new Date();
-
-
-    const hours =
-        String(
-            now.getHours()
-        ).padStart(2, "0");
-
-
-    const minutes =
-        String(
-            now.getMinutes()
-        ).padStart(2, "0");
+    const time = new Intl.DateTimeFormat(
+        "pt-BR",
+        {
+            timeZone: "America/Sao_Paulo",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false
+        }
+    ).format(new Date());
 
 
     osClock.textContent =
-        `${hours}:${minutes}`;
+        time;
 
 }
 
@@ -470,6 +545,11 @@ function updateLanguageSelector() {
                 buttonLanguage === currentLanguage
             );
 
+            button.setAttribute(
+                "aria-pressed",
+                buttonLanguage === currentLanguage
+            );
+
         }
     );
 
@@ -500,4 +580,6 @@ languageOptions.forEach(
 
 
 updateLanguageSelector();
+
+updateSelection();
 

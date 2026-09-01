@@ -132,6 +132,10 @@ function enterSystem() {
         return;
     }
 
+    if (!osScreen.classList.contains("hidden")) {
+        return;
+    }
+
 
     bootScreen.classList.add(
         "hidden"
@@ -147,6 +151,12 @@ function enterSystem() {
     }, 400);
 
 }
+
+
+bootContinue.addEventListener(
+    "click",
+    enterSystem
+);
 
 
 /* =========================================================
