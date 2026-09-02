@@ -149,7 +149,7 @@ Visualizador PDF.js com navegação de páginas, zoom e download.
 
 ### Seção `/curriculo` — Currículo no terminal
 
-![Currículo exibido no terminal](assets/images/curriculo-terminal.png)
+<img width="1254" height="590" alt="image" src="https://github.com/user-attachments/assets/0faa0a5b-aee3-4179-a3a5-94810c328c65" />
 
 ### Seção `/contato`
 
