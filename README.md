@@ -1,8 +1,8 @@
-# Terminal Portfolio — Volpini OS
+# Terminal Portfolio Volpini OS
 
 Portfólio pessoal com interface inspirada em um terminal de computador. O visitante navega pelo conteúdo digitando comandos, como em um sistema operacional de linha de comando.
 
-O objetivo é apresentar informações profissionais (sobre mim, habilidades, projetos, currículo e contato) de uma forma diferente dos portfólios tradicionais, mantendo a navegação simples e acessível.
+O objetivo é apresentar informações profissionais (sobre mim, experiencia, projetos, currículo e contato) de uma forma diferente dos portfólios tradicionais, mantendo a navegação simples e acessível.
 
 ---
 
@@ -108,25 +108,6 @@ Para trocar o currículo em PDF, substitua o arquivo `portfolio/CV Rafael Nagem 
 
 O formulário de contato usa `mailto:volpini767@gmail.com` e abre o aplicativo de e-mail padrão do visitante. Para receber os envios direto no servidor, basta trocar esse fluxo por um serviço como Formspree ou por uma API própria.
 
----
-
-## Deploy
-
-O projeto é 100% estático, então não exige build.
-
-**Netlify (utilizado neste projeto):**
-
-1. Conecte o repositório do GitHub em *Add new site → Import an existing project*.
-2. Configure:
-   - **Base directory:** `portfolio`
-   - **Build command:** *(vazio)*
-   - **Publish directory:** `portfolio`
-3. Clique em *Deploy*. Cada novo `push` na branch principal republica o site automaticamente.
-
-O mesmo procedimento funciona no **Vercel** (Framework Preset: *Other*, Root Directory: `portfolio`), no **Render** (Static Site) ou no **GitHub Pages**.
-
----
-
 ## Preview
 
 ### Tela inicial
@@ -139,7 +120,6 @@ O mesmo procedimento funciona no **Vercel** (Framework Preset: *Other*, Root Dir
 ### Sistema em execução
 
 <img width="1339" height="618" alt="image" src="https://github.com/user-attachments/assets/62c191be-f287-4b9b-8e5c-3d28341d8fe6" />
-
 
 Navegação entre as seções digitando os comandos no terminal.
 
