@@ -159,33 +159,37 @@ Visualizador PDF.js com navegação de páginas, zoom e download.
 ## Estrutura do projeto
 
 ```text
-portfolio/
-│
-├── index.html
-├── package.json
+.
+├── LICENSE
 ├── README.md
-├── CV Rafael Nagem Volpini-5.pdf
+├── package.json
+├── package-lock.json
 │
-├── assets/
-│   ├── images/
-│   │   ├── tela-inicial.png
-│   │   ├── sobre.png
-│   │   ├── habilidades.png
-│   │   ├── projetos.png
-│   │   ├── curriculo-terminal.png
-│   │   ├── contato.png
-│   │   └── mobile.png
+├── portfolio/
+│   ├── index.html
+│   ├── terminal.html
+│   ├── CV Rafael Nagem Volpini-5.pdf
+│   ├── package.json
+│   ├── package-lock.json
 │   │
-│   └── gifs/
-│       ├── navegacao-terminal.gif
-│       └── curriculo-pdf.gif
+│   ├── css/
+│   │   ├── boot.css
+│   │   ├── os.css
+│   │   └── style.css
+│   │
+│   └── js/
+│       ├── app.js
+│       ├── boot.js
+│       ├── data.js
+│       ├── i18n.js
+│       └── os.js
 │
-├── css/
-│   └── style.css
-│
-└── js/
-    ├── script.js
-    └── data.js
+└── prototipos/
+  ├── Comandos.png
+  ├── Curriculo.png
+  ├── Habilidades.png
+  ├── TelaInicial.png
+  └── protótipo.html
 ```
 
 ## Autor
