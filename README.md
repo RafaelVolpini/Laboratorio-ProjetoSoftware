@@ -1,215 +1,214 @@
 # Terminal Portfolio — Volpini OS
 
-Portfolio pessoal desenvolvido com uma interface inspirada em um terminal de computador.
+Portfólio pessoal com interface inspirada em um terminal de computador. O visitante navega pelo conteúdo digitando comandos, como em um sistema operacional de linha de comando.
 
-A proposta é apresentar informações profissionais de forma interativa, permitindo que o visitante navegue pelo conteúdo utilizando comandos digitados diretamente no terminal. O conteúdo é individual e pode ser personalizado em `portfolio/js/data.js`.
+O objetivo é apresentar informações profissionais (sobre mim, habilidades, projetos, currículo e contato) de uma forma diferente dos portfólios tradicionais, mantendo a navegação simples e acessível.
+
+---
 
 ## Site publicado
 
-Ainda não há uma URL de produção configurada. Após publicar a pasta `portfolio/` em um serviço estático, substitua este texto pelo endereço final, por exemplo: `https://seu-projeto.vercel.app`.
+**https://rafaelvolpini-portfolio.netlify.app**
+
+Hospedagem: **Netlify** (deploy contínuo a partir do repositório no GitHub — cada `push` na branch principal gera uma nova publicação automaticamente).
+
+---
 
 ## Tecnologias utilizadas
 
-- HTML5 semântico e acessível.
-- CSS3, com layout responsivo, foco visível e suporte a `prefers-reduced-motion`.
-- JavaScript puro para o terminal, navegação, idiomas e formulário de contato.
-- Font Awesome 6 para os ícones.
+| Tecnologia | Uso no projeto |
+|---|---|
+| **HTML5** | Estrutura semântica e acessível das seções do sistema. |
+| **CSS3** | Layout responsivo, tema de terminal, animações, foco visível e suporte a `prefers-reduced-motion`. |
+| **JavaScript (Vanilla / ES6+)** | Interpretador de comandos do terminal, navegação entre seções, troca de idioma e validação do formulário de contato. Sem frameworks. |
+| **PDF.js** | Visualizador de currículo em PDF embutido na própria página (navegação de páginas, zoom, download e abertura de outro PDF local). |
+| **Font Awesome 6** | Ícones da interface e dos links sociais. |
+| **live-server** (npm) | Servidor local com recarregamento automático durante o desenvolvimento. |
+| **Git + GitHub** | Versionamento e origem do deploy. |
+| **Netlify** | Hospedagem estática e publicação contínua. |
 
-## Uso e desenvolvimento
+---
 
-1. Entre na pasta `portfolio/`.
-2. Instale as dependências com `npm install`.
-3. Inicie o servidor local com `npm run dev`.
-4. Abra o endereço exibido pelo `live-server`.
+## Funcionalidades
 
-O formulário valida nome, e-mail e mensagem e abre o aplicativo de e-mail padrão usando `mailto:volpini767@gmail.com`. Para receber envios diretamente no servidor, substitua esse fluxo por um serviço como Formspree ou por uma API própria.
+- Interface completa inspirada em terminal, com prompt, cursor e histórico de saída.
+- Navegação por comandos digitados (com `Enter` para executar).
+- Menu de opções navegável por teclado, além dos comandos.
+- Exibição dinâmica das seções sem recarregar a página.
+- Comando de ajuda listando todos os comandos disponíveis.
+- Comando `clear` para limpar a saída e voltar ao estado inicial.
+- **Currículo em dois formatos:**
+  - **Currículo PDF** — abre o visualizador PDF.js com o arquivo `CV Rafael Nagem Volpini-5.pdf`.
+  - **Currículo no terminal** — exibe experiências, formação e informações em texto, dentro do próprio terminal.
+- Formulário de contato com validação de nome, e-mail e mensagem.
+- Links para GitHub, LinkedIn e WhatsApp.
+- Suporte a mais de um idioma na interface.
+- Design responsivo para celular e tablet.
+- Conteúdo centralizado e personalizável em `portfolio/js/data.js`.
 
-O currículo usado pelo sistema é `portfolio/CV Rafael Nagem Volpini-5.pdf`. No OS, selecione **Currículo PDF** e pressione `Enter`. O visualizador PDF.js permite navegar pelas páginas, ajustar o zoom, baixar o arquivo e abrir outro PDF local pelo botão **Abrir PDF**.
-
-Para publicar, conecte o repositório ao Vercel, Render ou GitHub Pages e defina `portfolio/` como diretório raiz de publicação. Depois atualize a seção **Site publicado** com a URL real.
-
-## Preview
-
-### Protótipo da interface
-
-Abaixo está o protótipo inicial da página:
-
-![Protótipo da interface inicial](assets/images/prototipo-inicial.png)
-
-> **Observação:** substituir `assets/images/prototipo-inicial.png` pela imagem real do protótipo.
-
-A tela inicial apresenta uma identidade visual baseada em terminal:
-
-```text
-rafael@portfolio:~$ whoami
-
-_______
-|__   __|       _
-   | | ___  ___| |_
-   | |/ _ \/ __| __||/ _ \
-   | |  __/\__ \ |_||  __/
-   |_|\___||___/\__| \___|
-
-TESTE
-```
-
-Abaixo da apresentação existe um terminal interativo onde o visitante poderá digitar comandos para acessar as diferentes seções do portfolio.
-
-### Protótipos das seções
-
-#### Seção `/sobre`
-
-![Protótipo da seção Sobre](assets/images/prototipo-sobre.png)
-
-Apresentará informações sobre o desenvolvedor, sua trajetória, formação e principais características profissionais.
-
-#### Seção `/habilidades`
-
-![Protótipo da seção Habilidades](assets/images/prototipo-habilidades.png)
-
-Apresentará as principais tecnologias, ferramentas e habilidades utilizadas no desenvolvimento dos projetos.
-
-#### Seção `/projetos`
-
-![Protótipo da seção Projetos](assets/images/prototipo-projetos.png)
-
-Apresentará os projetos desenvolvidos, com suas respectivas descrições, tecnologias utilizadas e links.
-
-#### Seção `/curriculo`
-
-![Protótipo da seção Currículo](assets/images/prototipo-curriculo.png)
-
-Apresentará experiências profissionais, formação acadêmica e outras informações relevantes.
-
-#### Seção `/contato`
-
-![Protótipo da seção Contato](assets/images/prototipo-contato.png)
-
-Apresentará as formas de contato e links para redes profissionais.
-
-> **Observação:** as imagens acima representam os locais previstos para os protótipos. Os arquivos podem ser adicionados posteriormente na pasta `assets/images/`.
+---
 
 ## Comandos disponíveis
 
-```text
-/sobre
+| Comando | Descrição |
+|---|---|
+| `/sobre` | Informações sobre o desenvolvedor, trajetória e formação. |
+| `/habilidades` | Tecnologias, ferramentas e habilidades técnicas. |
+| `/projetos` | Lista dos projetos desenvolvidos, com descrição, tecnologias e links. |
+| `/curriculo` | Currículo — permite escolher entre **PDF** e **terminal**. |
+| `/contato` | Formas de contato e redes profissionais. |
+| `/ajuda` | Mostra todos os comandos disponíveis. |
+| `clear` | Limpa a tela e retorna ao estado inicial. |
+
+Também é possível navegar pelo menu inicial usando as setas do teclado e `Enter`, sem digitar nada.
+
+---
+
+## Instruções de uso
+
+1. Acesse **https://rafaelvolpini-portfolio.netlify.app**.
+2. Na tela inicial, digite um comando (por exemplo `/sobre`) e pressione `Enter`, ou selecione uma opção do menu com as setas e `Enter`.
+3. Digite `/ajuda` a qualquer momento para ver a lista completa de comandos.
+4. Em `/curriculo`, escolha:
+   - **Currículo PDF** → abre o visualizador com controles de página, zoom, download e o botão **Abrir PDF** para carregar outro arquivo local;
+   - **Currículo no terminal** → exibe o conteúdo em texto na própria tela.
+5. Use `clear` para limpar a saída e recomeçar.
+
+---
+
+## Instruções de desenvolvimento
+
+Pré-requisitos: **Node.js 18+** e **npm** instalados.
+
+```bash
+# 1. Clonar o repositório
+git clone https://github.com/<seu-usuario>/<seu-repositorio>.git
+cd <seu-repositorio>/portfolio
+
+# 2. Instalar as dependências
+npm install
+
+# 3. Iniciar o servidor de desenvolvimento
+npm run dev
 ```
 
-Exibe informações sobre o desenvolvedor.
+Depois abra no navegador o endereço exibido pelo `live-server` (normalmente `http://127.0.0.1:8080`). As alterações em HTML, CSS e JS recarregam a página automaticamente.
 
-```text
-/habilidades
-```
+### Personalizando o conteúdo
 
-Exibe as tecnologias e habilidades.
+Todo o conteúdo textual do sistema fica em **`portfolio/js/data.js`**. Para adaptar o portfólio, edite esse arquivo:
 
-```text
-/projetos
-```
+- dados de **Sobre mim**;
+- lista de **habilidades**;
+- lista de **projetos** (título, descrição, tecnologias, links e imagem/GIF);
+- itens do **currículo** exibido no terminal;
+- **contatos** e redes sociais.
 
-Lista os projetos desenvolvidos.
+Para trocar o currículo em PDF, substitua o arquivo `portfolio/CV Rafael Nagem Volpini-5.pdf` e atualize o caminho referenciado em `data.js`.
 
-```text
-/curriculo
-```
+O formulário de contato usa `mailto:volpini767@gmail.com` e abre o aplicativo de e-mail padrão do visitante. Para receber os envios direto no servidor, basta trocar esse fluxo por um serviço como Formspree ou por uma API própria.
 
-Exibe experiências profissionais e formação.
+---
 
-```text
-/contato
-```
+## Deploy
 
-Exibe formas de contato e redes sociais.
+O projeto é 100% estático, então não exige build.
 
-```text
-/ajuda
-```
+**Netlify (utilizado neste projeto):**
 
-Mostra todos os comandos disponíveis.
+1. Conecte o repositório do GitHub em *Add new site → Import an existing project*.
+2. Configure:
+   - **Base directory:** `portfolio`
+   - **Build command:** *(vazio)*
+   - **Publish directory:** `portfolio`
+3. Clique em *Deploy*. Cada novo `push` na branch principal republica o site automaticamente.
 
-```text
-clear
-```
+O mesmo procedimento funciona no **Vercel** (Framework Preset: *Other*, Root Directory: `portfolio`), no **Render** (Static Site) ou no **GitHub Pages**.
 
-Limpa o conteúdo exibido e retorna ao estado inicial.
+---
 
-## Estrutura inicial do site
+## Preview
 
-A estrutura inicial do projeto será organizada da seguinte forma:
+### Tela inicial
+
+<img width="1343" height="609" alt="image" src="https://github.com/user-attachments/assets/d075720a-a4a9-4c35-91cc-38e41c56a4d6" />
+
+<img width="1349" height="621" alt="image" src="https://github.com/user-attachments/assets/3586580f-a6be-42b8-aa01-7ed8ddcbdfab" />
+
+
+### Sistema em execução
+
+<img width="1339" height="618" alt="image" src="https://github.com/user-attachments/assets/62c191be-f287-4b9b-8e5c-3d28341d8fe6" />
+
+
+Navegação entre as seções digitando os comandos no terminal.
+
+### Seção `/sobre`
+
+<img width="1123" height="448" alt="image" src="https://github.com/user-attachments/assets/dddc22a7-7f31-42be-ad6f-acdd186ed77b" />
+
+### Seção `/projetos`
+
+<img width="1138" height="453" alt="image" src="https://github.com/user-attachments/assets/edc471b1-389d-418b-aab5-616d5339ad6d" />
+
+### Seção `/experiências`
+
+<img width="1172" height="505" alt="image" src="https://github.com/user-attachments/assets/1c4f4028-e256-40ac-8657-fc5dcd800b05" />
+
+### Seção `/curriculo` — Currículo PDF
+
+<img width="1225" height="581" alt="image" src="https://github.com/user-attachments/assets/3df786ed-eed4-4852-8a59-da9e8b0ec6c7" />
+
+Visualizador PDF.js com navegação de páginas, zoom e download.
+
+### Seção `/curriculo` — Currículo no terminal
+
+![Currículo exibido no terminal](assets/images/curriculo-terminal.png)
+
+### Seção `/contato`
+
+<img width="1156" height="519" alt="image" src="https://github.com/user-attachments/assets/6a227253-2d9e-427c-bba3-06045e4a9903" />
+
+
+## Estrutura do projeto
 
 ```text
 portfolio/
 │
 ├── index.html
+├── package.json
 ├── README.md
 ├── CV Rafael Nagem Volpini-5.pdf
 │
 ├── assets/
 │   ├── images/
-│   │   ├── prototipo-inicial.png
-│   │   ├── prototipo-sobre.png
-│   │   ├── prototipo-habilidades.png
-│   │   ├── prototipo-projetos.png
-│   │   ├── prototipo-curriculo.png
-│   │   └── prototipo-contato.png
+│   │   ├── tela-inicial.png
+│   │   ├── sobre.png
+│   │   ├── habilidades.png
+│   │   ├── projetos.png
+│   │   ├── curriculo-terminal.png
+│   │   ├── contato.png
+│   │   └── mobile.png
 │   │
 │   └── gifs/
+│       ├── navegacao-terminal.gif
+│       └── curriculo-pdf.gif
 │
 ├── css/
 │   └── style.css
 │
 └── js/
-    └── script.js
+    ├── script.js
+    └── data.js
 ```
 
-A estrutura poderá ser modificada conforme o desenvolvimento do projeto evoluir.
+## Autor
 
-## Tecnologias previstas
+**Rafael Nagem Volpini**
 
-O projeto será desenvolvido inicialmente utilizando tecnologias web fundamentais:
+- Site: https://rafaelvolpini-portfolio.netlify.app
+- E-mail: volpini767@gmail.com
+- GitHub: https://github.com/<seu-usuario>
+- LinkedIn: https://www.linkedin.com/in/<seu-perfil>
 
-* **HTML5** — estrutura e organização do conteúdo.
-* **CSS3** — estilização, layout, responsividade e efeitos visuais.
-* **JavaScript** — implementação da interação com o terminal, comandos e navegação.
-
-A interface principal não dependerá de frameworks, mantendo a implementação simples e utilizando tecnologias nativas da web.
-
-## Funcionalidades previstas
-
-* Interface inspirada em terminal.
-* Navegação através de comandos.
-* Exibição dinâmica das seções.
-* Comando de ajuda com os comandos disponíveis.
-* Comando `clear` para limpar o terminal.
-* Animações e efeitos visuais.
-* Design responsivo para dispositivos móveis.
-* Exibição de imagens e GIFs dos projetos.
-* Links para GitHub, LinkedIn e WhatsApp.
-* Apresentação de informações profissionais e projetos.
-
-## Objetivo
-
-Criar um portfolio profissional com uma experiência diferente dos portfolios tradicionais.
-
-A interface utilizará elementos visuais de terminal, comandos, texto monoespaçado, animações e navegação interativa.
-
-A ideia é proporcionar ao visitante a sensação de estar explorando um terminal pessoal, enquanto acessa informações profissionais de forma simples e intuitiva.
-
-## Próximas etapas
-
-* [ ] Implementar a tela inicial com `TESTE`
-* [ ] Implementar a estrutura visual do terminal
-* [ ] Implementar o sistema de comandos
-* [ ] Criar a seção `/sobre`
-* [ ] Criar a seção `/habilidades`
-* [ ] Criar a seção `/projetos`
-* [ ] Criar a seção `/curriculo`
-* [ ] Criar a seção `/contato`
-* [ ] Adicionar GitHub
-* [ ] Adicionar LinkedIn
-* [ ] Adicionar WhatsApp
-* [ ] Adicionar imagens dos protótipos
-* [ ] Adicionar GIFs dos projetos
-* [ ] Substituir os textos fictícios pelas informações reais
-* [ ] Implementar responsividade para celular
-* [ ] Realizar testes de usabilidade e navegação
+> Projeto acadêmico individual. A estrutura de front-end (layout, navegação e componentes) é compartilhada com o grupo, mas todo o conteúdo e este repositório são individuais.
