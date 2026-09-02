@@ -514,6 +514,53 @@ body {
 
 
 /* =========================
+   HABILIDADES
+========================= */
+
+.skills-group {
+    max-width: 850px;
+    margin: 0 auto 32px;
+}
+
+.skills-group h3 {
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin: 0 0 18px;
+}
+
+.skill-item {
+    margin-bottom: 18px;
+}
+
+.skill-label {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.skill-label i,
+.skill-label strong {
+    color: var(--green);
+}
+
+.skill-bar {
+    height: 12px;
+    background: #202b3d;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.skill-bar span {
+    display: block;
+    height: 100%;
+    background: var(--green);
+    border-radius: inherit;
+}
+
+
+/* =========================
    TIMELINE
 ========================= */
 

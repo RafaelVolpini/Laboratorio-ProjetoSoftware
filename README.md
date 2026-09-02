@@ -127,6 +127,12 @@ Navegação entre as seções digitando os comandos no terminal.
 
 <img width="1123" height="448" alt="image" src="https://github.com/user-attachments/assets/dddc22a7-7f31-42be-ad6f-acdd186ed77b" />
 
+### Seção `/habilidades`
+
+![alt text](image.png)
+
+Exibe as principais habilidades e os conhecimentos adicionais em barras de progresso.
+
 ### Seção `/projetos`
 
 <img width="1138" height="453" alt="image" src="https://github.com/user-attachments/assets/edc471b1-389d-418b-aab5-616d5339ad6d" />

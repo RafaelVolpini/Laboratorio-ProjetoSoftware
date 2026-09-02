@@ -84,6 +84,14 @@ const commandAliases = {
         projeto: "projects",
         projects: "projects",
 
+        habilidades: "skills",
+        habilidade: "skills",
+        skills: "skills",
+
+        curriculo: "resume",
+        curriculum: "resume",
+        resume: "resume",
+
         contato: "contact",
         contact: "contact",
 
@@ -105,6 +113,13 @@ const commandAliases = {
 
         projects: "projects",
         projetos: "projects",
+
+        skills: "skills",
+        habilidades: "skills",
+
+        resume: "resume",
+        curriculo: "resume",
+        curriculum: "resume",
 
         contact: "contact",
         contato: "contact",
@@ -157,6 +172,14 @@ function executeCommand(command) {
 
         case "projects":
             showProjects();
+            break;
+
+        case "skills":
+            showSkills();
+            break;
+
+        case "resume":
+            openResumePdf();
             break;
 
         case "contact":
@@ -267,6 +290,80 @@ function showHelp() {
 
     terminalOutput.appendChild(section);
 
+    scrollToBottom();
+}
+
+
+/* =========================
+   CURRICULO PDF
+========================= */
+
+function openResumePdf() {
+
+    const resumePdfPath = "CV%20Rafael%20Nagem%20Volpini-5.pdf";
+
+    if (window.parent !== window) {
+        window.parent.postMessage({ type: "open-resume" }, window.location.origin);
+        return;
+    }
+
+    const resumeWindow = window.open(resumePdfPath, "_blank");
+    const section = document.createElement("div");
+
+    section.className = "command-notice";
+    section.textContent = resumeWindow
+        ? "Currículo PDF aberto em uma nova aba."
+        : "Não foi possível abrir o currículo. Permita pop-ups para este site.";
+
+    terminalOutput.appendChild(section);
+    scrollToBottom();
+}
+
+
+/* =========================
+   HABILIDADES
+========================= */
+
+function showSkills() {
+
+    const data = portfolioData[currentLanguage].skills;
+    const mainSkills = data.items.filter((skill) => !skill.additional);
+    const additionalSkills = data.items.filter((skill) => skill.additional);
+    const section = document.createElement("section");
+
+    section.className = "content-section";
+
+    function renderSkills(skills) {
+
+        return skills.map((skill) => `
+            <div class="skill-item">
+                <div class="skill-label">
+                    <span><i class="fa-brands fa-github"></i> ${skill.name}</span>
+                    <strong>${skill.level}%</strong>
+                </div>
+                <div class="skill-bar" role="progressbar" aria-label="${skill.name}" aria-valuenow="${skill.level}" aria-valuemin="0" aria-valuemax="100">
+                    <span style="width: ${skill.level}%"></span>
+                </div>
+            </div>
+        `).join("");
+    }
+
+    section.innerHTML = `
+        <h2>
+            <i class="fa-solid fa-chart-simple"></i>
+            ${data.title}
+        </h2>
+        <div class="skills-group">
+            <h3>${data.mainTitle}</h3>
+            ${renderSkills(mainSkills)}
+        </div>
+        <div class="skills-group">
+            <h3>${data.additionalTitle}</h3>
+            ${renderSkills(additionalSkills)}
+        </div>
+    `;
+
+    terminalOutput.appendChild(section);
     scrollToBottom();
 }
 

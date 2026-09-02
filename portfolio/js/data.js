@@ -30,8 +30,30 @@ const portfolioData = {
             projetos:
                 "Exibe meus projetos desenvolvidos.",
 
+            habilidades:
+                "Mostra minhas principais habilidades técnicas.",
+
+            curriculo:
+                "Abre meu currículo em PDF.",
+
             limpar:
                 "Limpa o histórico do terminal."
+        },
+
+        skills: {
+            title: "Habilidades",
+            mainTitle: "Principais conhecimentos",
+            additionalTitle: "Conhecimentos adicionais",
+            items: [
+                { name: "React", level: 95 },
+                { name: "TypeScript", level: 90 },
+                { name: "JavaScript", level: 90 },
+                { name: "HTML", level: 85 },
+                { name: "CSS", level: 85 },
+                { name: "Python", level: 55, additional: true },
+                { name: "Java", level: 50, additional: true },
+                { name: "Node.js", level: 50, additional: true }
+            ]
         },
 
         about: {
@@ -143,8 +165,30 @@ const portfolioData = {
             projects:
                 "Shows my developed projects.",
 
+            skills:
+                "Shows my main technical skills.",
+
+            resume:
+                "Opens my resume as a PDF.",
+
             clear:
                 "Clears the terminal history."
+        },
+
+        skills: {
+            title: "Skills",
+            mainTitle: "Main skills",
+            additionalTitle: "Additional skills",
+            items: [
+                { name: "React", level: 95 },
+                { name: "TypeScript", level: 90 },
+                { name: "JavaScript", level: 90 },
+                { name: "HTML", level: 85 },
+                { name: "CSS", level: 85 },
+                { name: "Python", level: 55, additional: true },
+                { name: "Java", level: 50, additional: true },
+                { name: "Node.js", level: 50, additional: true }
+            ]
         },
 
         about: {
